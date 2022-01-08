@@ -8,7 +8,7 @@ Please check the published ports or docker container names if sth. was changed
 
 ## Installation
 Run the docker-compose.yml.
-All containers show up and a new network was build (e.g. _prometheus_default_)
+All containers show up and a new (deictaed) network was build (e.g. _prometheus_default_). Make sure that Docker has some IP Ranges left, otherwise there will be an error concerning overlapping networks.
 
 ## Finish and Run
 * cAdvisor and Prometheus can be tested by their published ports (cAdvisor: 8080, Prometheus: 9090)
@@ -31,3 +31,4 @@ If you encounter something like _failed to get container "/system.slice" with er
 * Is Redis really needed??
 * Make Grafana Configuration persistent (will be resetted if Grafana Container is restarted)
 * Security ...
+* Remove published ports of prometheus and cAdvisor. Access is only possible from inside the dedicated network.
