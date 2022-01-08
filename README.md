@@ -1,4 +1,4 @@
-# Grafana and Prometheus on ARM with Docker
+# Grafana and Prometheus with cAdvisor on Docker ARM (armv7, RaspberryPi)
 
 ## Forewords
 Unfortunaltely Google doesn't provide any cAdvisor version for ARM. The docker image from zcube/cadvisor is used for ARM (https://github.com/zcube/cadvisor-docker and https://hub.docker.com/r/zcube/cadvisor).
