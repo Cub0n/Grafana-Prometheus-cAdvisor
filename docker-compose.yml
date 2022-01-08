@@ -30,7 +30,7 @@ services:
     - /var/run:/var/run:rw
     - /sys:/sys:ro
     - /dev/disk/:/dev/disk:ro
-    - /storage/cluster-data/docker/:/var/lib/docker:ro
+    - /path/to/lib/docker/:/var/lib/docker:ro
     depends_on:
     - redis
   redis:
