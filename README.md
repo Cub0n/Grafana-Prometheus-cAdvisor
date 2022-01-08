@@ -1,14 +1,17 @@
 # Grafana and Prometheus with cAdvisor on Docker ARM (armv7, RaspberryPi)
 
 ## Forewords
-Unfortunaltely Google doesn't provide any cAdvisor version for ARM. The docker image from zcube/cadvisor is used for ARM (https://github.com/zcube/cadvisor-docker and https://hub.docker.com/r/zcube/cadvisor).
+Unfortunaltely Google doesn't provide any cAdvisor version for ARM. 
+
+The docker image from zcube/cadvisor is used for ARM (https://github.com/zcube/cadvisor-docker and https://hub.docker.com/r/zcube/cadvisor).
 
 ## Configuration
 Please check the published ports or docker container names if sth. was changed
 
 ## Installation
-Run _docker stack deploy --compose-file docker-compose.yml prometheus_
-All containers show up and a new (deictaed) network was build (e.g. _prometheus_default_). Make sure that Docker has some IP Ranges left, otherwise there will be an error concerning overlapping networks.
+Run _docker stack deploy --compose-file docker-compose.yml prometheus_.
+
+All containers show up and a new (dedicated) network was build (e.g. _prometheus_default_). Make sure that Docker has some IP Ranges left, otherwise there will be an error concerning overlapping networks.
 
 ## Finish and Run
 * cAdvisor and Prometheus can be tested by their published ports (cAdvisor: 8080, Prometheus: 9090)
