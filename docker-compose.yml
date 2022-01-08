@@ -22,12 +22,15 @@ services:
     image: zcube/cadvisor:latest
     container_name: cadvisor
     ports:
-    - 8080:8080
+    - 8081:8080
+    command:
+    - --raw_cgroup_prefix_whitelist=/docker/
     volumes:
     - /:/rootfs:ro
     - /var/run:/var/run:rw
     - /sys:/sys:ro
-    - /path/to/docker/images:/var/lib/docker:ro
+    - /dev/disk/:/dev/disk:ro
+    - /storage/cluster-data/docker/:/var/lib/docker:ro
     depends_on:
     - redis
   redis:
