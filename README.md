@@ -31,4 +31,4 @@ If you encounter something like _failed to get container "/system.slice" with er
 * Is Redis really needed??
 * Make Grafana Configuration persistent (will be resetted if Grafana Container is restarted)
 * Security ...
-* Remove published ports of prometheus and cAdvisor. Access is only possible from inside the dedicated network.
+* Remove published ports of Redis, Prometheus and cAdvisor. Access to these containers is only possible from inside the dedicated network.
