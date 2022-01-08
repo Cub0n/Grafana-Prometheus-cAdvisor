@@ -22,7 +22,7 @@ services:
     image: zcube/cadvisor:latest
     container_name: cadvisor
     ports:
-    - 8081:8080
+    - 8080:8080
     command:
     - --raw_cgroup_prefix_whitelist=/docker/
     volumes:
