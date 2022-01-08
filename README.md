@@ -7,7 +7,7 @@ Unfortunaltely Google doesn't provide any cAdvisor version for ARM. The docker i
 Please check the published ports or docker container names if sth. was changed
 
 ## Installation
-Run the docker-compose.yml.
+Run _docker stack deploy --compose-file docker-compose.yml prometheus_
 All containers show up and a new (deictaed) network was build (e.g. _prometheus_default_). Make sure that Docker has some IP Ranges left, otherwise there will be an error concerning overlapping networks.
 
 ## Finish and Run
