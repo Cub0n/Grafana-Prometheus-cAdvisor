@@ -24,7 +24,7 @@ For making prometheus data persistent, add:
 ### Grafana
 For making grafana data persistent, add:
 ```
--v /path/to//grafana:/var/lib/grafana:Z
+-v /path/to/grafana:/var/lib/grafana:Z
 ```
   
 SSL Configuration:
