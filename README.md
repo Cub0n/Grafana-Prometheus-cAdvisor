@@ -26,15 +26,6 @@ For making grafana data persistent, add:
 ```
 -v /path/to/grafana:/var/lib/grafana:Z
 ```
-  
-SSL Configuration:
-```
--v /path/to/file/cert.pem:/etc/ssl/cert.pem:ro
--v /path/to/file/privkey.pem:/etc/ssl/privkey.pem:ro
--e GF_SERVER_CERT_FILE=/etc/ssl/cert.pem
--e GF_SERVER_CERT_KEY=/etc/ssl/privkey.pem
--e GF_SERVER_PROTOCOL=https
-```
 
 ## Installation
 Run _docker stack deploy --compose-file docker-compose.yml prometheus_ or _podman-compose -f docker-compose.yml_ (podman-compose has to be installed beforehand https://github.com/containers/podman-compose or https://linuxhandbook.com/podman-compose/)
@@ -53,6 +44,7 @@ All containers show up and a new (dedicated) network was build (e.g. _prometheus
 * https://www.learncloudnative.com/blog/2021-08-25-cadvisor
 * https://github.com/google/cadvisor/blob/master/docs/storage/prometheus.md
 * https://www.metricfire.com/blog/monitoring-docker-containers-with-cadvisor/
+* https://grafana.com/docs/grafana/latest/setup-grafana/set-up-https/
 
 ## Pitfalls
 If you encounter something like _failed to get container "/system.slice" with error: unable to find data in memory cache_ then a command argument has to be added in the docker-compose.yml: --raw_cgroup_prefix_whitelist=/docker/
