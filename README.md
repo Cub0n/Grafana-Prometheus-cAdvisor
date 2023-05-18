@@ -1,15 +1,43 @@
-# Grafana and Prometheus with cAdvisor on Docker ARM (armv7, RaspberryPi)
+# Grafana and Prometheus with cAdvisor on Docker ARM (armv7, RaspberryPi, and with Podman)
 
 ## Forewords
 Unfortunaltely Google doesn't provide any cAdvisor version for ARM. 
 
 The docker image from zcube/cadvisor is used for ARM (https://github.com/zcube/cadvisor-docker and https://hub.docker.com/r/zcube/cadvisor).
 
+Podman with cAdvisor is not working, there are different open issues. Full support is still not implemented.
+
 ## Configuration
 Please check the published ports or docker container names if something was changed
 
+### Prometheus
+Prometheus scrapping file should be defined beforehand:
+```
+-v /path/to/file/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+```
+
+For making prometheus data persistent, add:
+```
+-v /path/to/prometheus:/prometheus:Z
+```
+  
+### Grafana
+For making grafana data persistent, add:
+```
+-v /path/to//grafana:/var/lib/grafana:Z
+```
+  
+SSL Configuration:
+```
+-v /path/to/file/cert.pem:/etc/ssl/cert.pem:ro
+-v /path/to/file/privkey.pem:/etc/ssl/privkey.pem:ro
+-e GF_SERVER_CERT_FILE=/etc/ssl/cert.pem
+-e GF_SERVER_CERT_KEY=/etc/ssl/privkey.pem
+-e GF_SERVER_PROTOCOL=https
+```
+
 ## Installation
-Run _docker stack deploy --compose-file docker-compose.yml prometheus_
+Run _docker stack deploy --compose-file docker-compose.yml prometheus_ or _podman-compose -f docker-compose.yml_ (podman-compose has to be installed beforehand https://github.com/containers/podman-compose or https://linuxhandbook.com/podman-compose/)
 
 All containers show up and a new (dedicated) network was build (e.g. _prometheus_default_). Make sure that Docker has some IP Ranges left, otherwise there will be an error concerning overlapping networks.
 
@@ -31,7 +59,4 @@ If you encounter something like _failed to get container "/system.slice" with er
 (see https://gitanswer.com/exclude-system-slice-metrics-from-being-exposed-as-prometheus-metrics-cadvisor-go-391749466)
 
 ## Open thingies
-* Is Redis really needed??
-* Make Grafana Configuration persistent (will be resetted if Grafana Container is restarted)
-* Security ...
-* Remove published ports of Redis, Prometheus and cAdvisor. Access to these containers is only possible from inside the dedicated network.
+* Remove published ports of Redis, Prometheus and cAdvisor. Access to these containers is only possible from inside the dedicated network or from a pod
