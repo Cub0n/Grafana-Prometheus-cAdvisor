@@ -48,7 +48,8 @@ All containers show up and a new (dedicated) network was build (e.g. _prometheus
 * https://grafana.com/docs/grafana/latest/setup-grafana/set-up-https/
 
 ## Pitfalls
-If you encounter something like _failed to get container "/system.slice" with error: unable to find data in memory cache_ then a command argument has to be added in the docker-compose.yml: --raw_cgroup_prefix_whitelist=/docker/
+* Grafana has only images upto 10.1.2 for armv7, due to a an arm specific bug in Go. (https://github.com/grafana/grafana/issues/76629 & https://grafana.com/blog/2023/09/29/grafana-and-grafana-enterprise-updates-for-armv6-and-armv7-will-be-temporarily-paused/)
+* If you encounter something like _failed to get container "/system.slice" with error: unable to find data in memory cache_ then a command argument has to be added in the docker-compose.yml: --raw_cgroup_prefix_whitelist=/docker/
 (see https://gitanswer.com/exclude-system-slice-metrics-from-being-exposed-as-prometheus-metrics-cadvisor-go-391749466)
 
 ## Open thingies
