@@ -1,9 +1,10 @@
-# Grafana and Prometheus with cAdvisor on Docker ARM (armv7, RaspberryPi, and with Podman)
+# Grafana and Prometheus with cAdvisor on Docker ARM (armv7 / RaspberryPi)
 
 ## Forewords
 Unfortunaltely Google doesn't provide any cAdvisor version for ARM. 
 
 The docker image from zcube/cadvisor is used for ARM (https://github.com/zcube/cadvisor-docker and https://hub.docker.com/r/zcube/cadvisor).
+__UPDATE:__ Google offers also some arm images. Has to be tested with RaspberryPI.
 
 Podman with cAdvisor is not working, there are different open issues. Full support is still not implemented.
 
@@ -35,7 +36,7 @@ All containers show up and a new (dedicated) network was build (e.g. _prometheus
 ## Finish and Run
 * cAdvisor and Prometheus can be tested by their published ports (cAdvisor: 8080, Prometheus: 9090)
 * For Grafana the default password has to be changed (user:admin, password:admin) after first login
-* Add Grafana Data Source Prometheus. Prometheus is located under http://prometheus:9090, save & test.
+* Add Grafana Data Source Prometheus. Prometheus is located under http://prometheusURL:9090, save & test.
 * Import a dashboard from Grafana.com, e.g. 11600 (https://grafana.com/grafana/dashboards/11600)
 
 ## Documentation
@@ -51,4 +52,4 @@ If you encounter something like _failed to get container "/system.slice" with er
 (see https://gitanswer.com/exclude-system-slice-metrics-from-being-exposed-as-prometheus-metrics-cadvisor-go-391749466)
 
 ## Open thingies
-* Remove published ports of Redis, Prometheus and cAdvisor. Access to these containers is only possible from inside the dedicated network or from a pod
+* Remove published ports of Prometheus and cAdvisor. Access to these containers is only possible from inside the dedicated network or from a pod
