@@ -34,6 +34,7 @@ Podman is also supported and should be configured like:
 
 ```
 podman run -d --name cadvisor \
+        -p 8080:8080 \
         --volume=/:/rootfs:ro \
         --volume=/var/run/podman:/var/run/podman:ro \
         --volume=/sys:/sys:ro \
