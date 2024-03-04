@@ -22,7 +22,7 @@ services:
     depends_on:
     - cadvisor
   cadvisor:
-    image: zcube/cadvisor:latest
+    image: gcr.io/cadvisor/cadvisor-arm:v0.49.1 
     container_name: cadvisor
     ports:
     - 8080:8080
