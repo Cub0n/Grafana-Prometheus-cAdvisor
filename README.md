@@ -41,9 +41,6 @@ podman run -d --name cadvisor \
         --device=/dev/kmesg \
         --privileged \
         --restart=always \
-        --no-healthcheck=true \
-        --replace=true \
-        --pull=newer \
         --network=prometheus_default \
         gcr.io/cadvisor/cadvisor-arm:v0.49.1 --podman="unix:///var/run/podman/podman.sock"
 ```
