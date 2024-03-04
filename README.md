@@ -34,7 +34,6 @@ Podman is also supported and should be configured like:
 
 ```
 podman run -d --name cadvisor \
-        -p 8080:8080 \
         --volume=/:/rootfs:ro \
         --volume=/var/run/podman:/var/run/podman:ro \
         --volume=/sys:/sys:ro \
@@ -42,7 +41,7 @@ podman run -d --name cadvisor \
         --device=/dev/kmesg \
         --privileged \
         --restart=always \
-        --network=prometheus_default \
+        --network=host \
         gcr.io/cadvisor/cadvisor-arm:v0.49.1 --podman="unix:///var/run/podman/podman.sock"
 ```
 
@@ -71,3 +70,4 @@ The rootless podman configuration differs only in the location of _podman.sock_
 ## Pitfalls
 * If you encounter something like _failed to get container "/system.slice" with error: unable to find data in memory cache_ then a command argument has to be added in the docker-compose.yml: --raw_cgroup_prefix_whitelist=/docker/
 (see https://gitanswer.com/exclude-system-slice-metrics-from-being-exposed-as-prometheus-metrics-cadvisor-go-391749466)
+* The network of cAdvisor under Podman is _host_. cAdvisor on an other (internal) or same network as Grafana/Prometheus is not working.
