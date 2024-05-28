@@ -42,7 +42,7 @@ podman run -d --name cadvisor \
         --privileged \
         --restart=always \
         --network=host \
-        gcr.io/cadvisor/cadvisor-arm:v0.49.1 --podman="unix:///var/run/podman/podman.sock"
+        gcr.io/cadvisor/cadvisor-arm:v0.49.1 --podman="unix:///var/run/podman/podman.sock" --housekeeping_interval=10s --docker_only=true
 ```
 
 The rootless podman configuration differs only in the location of _podman.sock_
@@ -66,6 +66,7 @@ The rootless podman configuration differs only in the location of _podman.sock_
 * https://www.metricfire.com/blog/monitoring-docker-containers-with-cadvisor/
 * https://grafana.com/docs/grafana/latest/setup-grafana/set-up-https/
 * https://github.com/solo5star/dashboard
+* https://akashrajpurohit.com/blog/optimizing-cadvisor-for-lower-cpu-usage/
 
 ## Pitfalls
 * If you encounter something like _failed to get container "/system.slice" with error: unable to find data in memory cache_ then a command argument has to be added in the docker-compose.yml: --raw_cgroup_prefix_whitelist=/docker/
