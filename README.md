@@ -15,13 +15,13 @@ Prometheus scrapping file should be defined beforehand:
 
 For making prometheus data persistent, add:
 ```
--v /path/to/prometheus:/prometheus:Z
+-v /path/to/prometheus:/prometheus:rw
 ```
   
 ### Grafana
 For making grafana data persistent, add:
 ```
--v /path/to/grafana:/var/lib/grafana:Z
+-v /path/to/grafana:/var/lib/grafana:rw
 ```
 
 ## Installation
@@ -42,14 +42,14 @@ podman run -d --name cadvisor \
         --privileged \
         --restart=always \
         --network=host \
-        gcr.io/cadvisor/cadvisor-arm:v0.49.1 --podman="unix:///var/run/podman/podman.sock" --housekeeping_interval=10s --docker_only=true
+        gcr.io/cadvisor/cadvisor-arm:v0.52.1 --podman="unix:///var/run/podman/podman.sock" --housekeeping_interval=30s --docker_only=true --docker_only=true" --disable_metrics=accelerator,cpu_topology,disk,memory_numa,tcp,udp,percpu,sched,process,hugetlb,referenced_memory,resctrl,cpuset,advtcp,memory_numa
 ```
 
 The rootless podman configuration differs only in the location of _podman.sock_
 
 ```
 ...
- --volume=/run/user/$(id -u)/podman:/var/run/podman:ro # _podman.sock_ runs under a specific user
+ --volume=/run/user/$(id -u)/podman:/var/run/podman:ro # podman.sock runs under a specific user
 ```
 
 ## Finish and Run
@@ -60,6 +60,8 @@ The rootless podman configuration differs only in the location of _podman.sock_
 
 ## Documentation
 * https://prometheus.io/docs/guides/cadvisor/
+* https://thesmarthomejourney.com/2022/07/25/monitoring-smarthome-prometheus/
+* https://thesmarthomejourney.com/2022/08/01/fixing-cadvisor-cpu/
 * https://medium.com/@mertcan.simsek276/docker-monitoring-with-cadvisor-prometheus-and-grafana-adefe1202bf8
 * https://www.learncloudnative.com/blog/2021-08-25-cadvisor
 * https://github.com/google/cadvisor/blob/master/docs/storage/prometheus.md
